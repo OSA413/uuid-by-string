@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "typings": "index.d.ts",
   "scripts": {
+    "start": "node ./src/debug.js",
     "test": "jest",
     "lint": "eslint",
     "prepublishOnly": "npm run lint && npm run test"

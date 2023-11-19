@@ -5,3 +5,8 @@ coverage/
 
 # files
 package-lock.json
+
+
+# Added by cargo
+
+/target
