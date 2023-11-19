@@ -6,52 +6,63 @@ fn main() {
     println!("{:?}", generate_uuid("hello world", 5));
 }
 
-fn uint8ToHex(ubyte: u8) -> String {
+fn uint8_to_hex(ubyte: u8) -> String {
     return format!("{:X?}", ubyte)
 }
 
-fn uint8ArrayToHex(buf: &[u8]) -> String {
+fn uint8_array_to_hex(buf: &[u8]) -> String {
     let mut result = "".to_owned();
   
     for i in 0..buf.len() {
-        result.push_str(uint8ToHex(buf[i]).as_str());
+        result.push_str(uint8_to_hex(buf[i]).as_str());
     }
   
     return result;
 }
 
-fn hashToUuid(hashBuffer: [u8; 16], version: u8) -> String {
+fn hash_to_uuid(hash_buffer: [u8; 16], version: u8) -> String {
     return format!("{}-{}-{}{}-{}{}-{}", 
-        uint8ArrayToHex(&hashBuffer[0..4]),
-        uint8ArrayToHex(&hashBuffer[4..6]),
-        uint8ToHex((&hashBuffer[6] & 0x0f) | (version * 10)),
-        uint8ToHex(hashBuffer[7]),
-        uint8ToHex((&hashBuffer[8] & 0x3f) | 0x80),
-        uint8ToHex(hashBuffer[9]),
-        uint8ArrayToHex(&hashBuffer[10..16])
+        // The low field of the timestamp
+        uint8_array_to_hex(&hash_buffer[0..4]),
+        // The middle field of the timestamp
+        uint8_array_to_hex(&hash_buffer[4..6]),
+        // The high field of the timestamp multiplexed with the version number
+        uint8_to_hex((&hash_buffer[6] & 0x0f) | (version * 10)),
+        uint8_to_hex(hash_buffer[7]),
+        // The high field of the clock sequence multiplexed with the variant
+        uint8_to_hex((&hash_buffer[8] & 0x3f) | 0x80),
+        // The low field of the clock sequence
+        uint8_to_hex(hash_buffer[9]),
+        //  The spatially unique node identifier
+        uint8_array_to_hex(&hash_buffer[10..16])
     )
 }
 
-fn md5_hash(buf: &[u8]) -> [u8; 16] {
+fn md5_hash(buf: Vec<u8>) -> [u8; 16] {
     let mut hasher = Md5::new();
     hasher.update(buf);
     let result = hasher.finalize();
     return result[0..16].try_into().expect("Wrong length");
 }
 
-fn sha1_hash(buf: &[u8]) -> [u8; 16] {
+fn sha1_hash(buf: Vec<u8>) -> [u8; 16] {
     let mut hasher = Sha1::new();
     hasher.update(buf);
     let result = hasher.finalize();
     return result[0..16].try_into().expect("Wrong length");
 }
 
-// TODO: add namespace
 fn generate_uuid(target: &str, version: u8) -> Option<String> {
+    let target_char_buffer = target.as_bytes();
+    // TODO: implement
+    let namespace_char_buffer: &[u8] = &[];
+
+    let buffer = [namespace_char_buffer, target_char_buffer].concat();
+
     let result = if version == 3 {
-        md5_hash(target.as_bytes())}
+        md5_hash(buffer)}
     else {
-        sha1_hash(target.as_bytes())
+        sha1_hash(buffer)
     };
-    return Some(hashToUuid(result, version));
+    return Some(hash_to_uuid(result, version));
 }
