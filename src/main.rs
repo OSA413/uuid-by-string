@@ -7,7 +7,7 @@ fn main() {
 }
 
 fn uint8_to_hex(ubyte: u8) -> String {
-    return format!("{:X?}", ubyte)
+    return format!("{:x?}", ubyte)
 }
 
 fn uint8_array_to_hex(buf: &[u8]) -> String {
