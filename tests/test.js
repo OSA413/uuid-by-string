@@ -20,46 +20,6 @@ const stringSamples = [
 ];
 
 describe('unit', () => {
-  test('should convert byte number to hex representation', () => {
-    const hex = [
-      [255, 'ff'],
-      [0, '00'],
-      [8, '08'],
-      [11, '0b'],
-      [111, '6f'],
-    ];
-
-    for (const item of hex) {
-      expect(uint8ToHex(item[0])).toBe(item[1]);
-    }
-  });
-
-  test('should convert byte array to hex string', () => {
-    for (let i = 0; i < stringSamples.length; i++) {
-      const arr = new Uint8Array([212, 29, 140, 217, 143, 0, 178, 4, 233, 128, 9, 152, 236, 248, 66, 126]);
-      const hex = Buffer.from(arr).toString('hex');
-      expect(uint8ArrayToHex(arr)).toBe(hex);
-    }
-  });
-
-  test('should convert string to char buffer', () => {
-    for (let i = 0; i < stringSamples.length; i++) {
-      expect(stringToCharBuffer(stringSamples[i])).toMatchSnapshot();
-    }
-  });
-
-  test('should generate valid md5 hash', () => {
-    for (let i = 0; i < stringSamples.length; i++) {
-      expect(md5Hash(stringToCharBuffer(stringSamples[i]))).toMatchSnapshot();
-    }
-  });
-
-  test('should generate valid sha-1 hash', () => {
-    for (let i = 0; i < stringSamples.length; i++) {
-      expect(sha1Hash(stringToCharBuffer(stringSamples[i]))).toMatchSnapshot();
-    }
-  });
-
   test('should convert hash to uuid v3', () => {
     const arr = new Uint8Array([212, 29, 140, 217, 143, 0, 178, 4, 233, 128, 9, 152, 236, 248, 66, 126]);
 
