@@ -16,7 +16,19 @@ keywords = [
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+default=[]
+namespaces=[]
+
 [dependencies]
 md-5 = "0.10.6"
 regex = "1.10.2"
 sha1 = "0.10.6"
+
+[[test]]
+name = "default"
+required-features = []
+
+[[test]]
+name = "namespaces"
+required-features = ["namespaces"]
