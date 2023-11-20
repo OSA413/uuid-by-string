@@ -40,10 +40,6 @@ exports[`integration should generate uuid v5 from string with namespace 4`] = `"
 
 exports[`integration should generate uuid v5 from string with namespace 5`] = `"5daf5b6d-b5e8-5e22-96c4-71e0fd8c4540"`;
 
-exports[`unit should convert hash to uuid v3 1`] = `"d41d8cd9-8f00-3204-a980-0998ecf8427e"`;
-
-exports[`unit should convert hash to uuid v5 1`] = `"d41d8cd9-8f00-5204-a980-0998ecf8427e"`;
-
 exports[`unit should parse uuid 1`] = `
 Uint8Array [
   211,

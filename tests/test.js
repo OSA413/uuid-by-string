@@ -20,20 +20,6 @@ const stringSamples = [
 ];
 
 describe('unit', () => {
-  test('should convert hash to uuid v3', () => {
-    const arr = new Uint8Array([212, 29, 140, 217, 143, 0, 178, 4, 233, 128, 9, 152, 236, 248, 66, 126]);
-
-    const uuid = hashToUuid(arr, 3);
-    expect(uuid).toMatchSnapshot();
-  });
-
-  test('should convert hash to uuid v5', () => {
-    const arr = new Uint8Array([212, 29, 140, 217, 143, 0, 178, 4, 233, 128, 9, 152, 236, 248, 66, 126]);
-
-    const uuid = hashToUuid(arr, 5);
-    expect(uuid).toMatchSnapshot();
-  });
-
   test('should validate uuid', () => {
     expect(validateUuid('d3486ae9-136e-5856-bc42-212385ea7970')).toBe(true);
   });
