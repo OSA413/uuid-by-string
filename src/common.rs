@@ -22,7 +22,7 @@ pub fn hash_to_uuid(hash_buffer: [u8; 16], version: u8) -> String {
         // The middle field of the timestamp
         uint8_array_to_hex(&hash_buffer[4..6]),
         // The high field of the timestamp multiplexed with the version number
-        uint8_to_hex((&hash_buffer[6] & 0x0f) | (version * 10)),
+        uint8_to_hex((&hash_buffer[6] & 0x0f) | (version * 0x10)),
         uint8_to_hex(hash_buffer[7]),
         // The high field of the clock sequence multiplexed with the variant
         uint8_to_hex((&hash_buffer[8] & 0x3f) | 0x80),
