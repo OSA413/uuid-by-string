@@ -1,11 +1,21 @@
 [package]
 name = "uuid-by-string"
-version = "0.1.0"
+description = "Generating uuid-hash from string"
+version = "1.0.0"
 edition = "2021"
+authors = ["Oleg \"OSA413\" Sokolov", "Danakt Saushkin"]
+repository = "https://github.com/OSA413/uuid-by-string"
+homepage = "https://github.com/OSA413/uuid-by-string"
+license = "MIT"
+keywords = [
+    "uuid",
+    "guid",
+    "rfc4122",
+    "hash"
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-digest = "0.10.7"
 md-5 = "0.10.6"
 sha1 = "0.10.6"

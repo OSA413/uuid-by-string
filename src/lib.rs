@@ -1,10 +1,6 @@
+// TODO: implement generation with namespace in a separate feature
 use sha1::{Sha1, Digest};
-use md5::{Md5};
-
-fn main() {
-    println!("{:?}", generate_uuid("hello world", 3));
-    println!("{:?}", generate_uuid("hello world", 5));
-}
+use md5::Md5;
 
 fn uint8_to_hex(ubyte: u8) -> String {
     return format!("{:x?}", ubyte)
@@ -52,9 +48,8 @@ fn sha1_hash(buf: Vec<u8>) -> [u8; 16] {
     return result[0..16].try_into().expect("Wrong length");
 }
 
-fn generate_uuid(target: &str, version: u8) -> Option<String> {
+pub fn generate_uuid(target: &str, version: u8) -> String {
     let target_char_buffer = target.as_bytes();
-    // TODO: implement
     let namespace_char_buffer: &[u8] = &[];
 
     let buffer = [namespace_char_buffer, target_char_buffer].concat();
@@ -64,5 +59,5 @@ fn generate_uuid(target: &str, version: u8) -> Option<String> {
     else {
         sha1_hash(buffer)
     };
-    return Some(hash_to_uuid(result, version));
+    return hash_to_uuid(result, version);
 }
