@@ -1,7 +1,7 @@
 [package]
 name = "uuid-by-string"
 description = "Generating uuid-hash from string"
-version = "2.0.2"
+version = "2.0.3"
 edition = "2021"
 authors = ["Oleg \"OSA413\" Sokolov", "Danakt Saushkin"]
 repository = "https://github.com/OSA413/uuid-by-string"
