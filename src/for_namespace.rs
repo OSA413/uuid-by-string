@@ -23,13 +23,15 @@ pub fn parse_uuid(uuid: &str) -> Result<[u8; 16], &'static str> {
     let mut buf_index = 0;
 
     while str_index < uuid.len() {
-        let as_bytes = uuid.as_bytes();
-        if as_bytes[str_index] == b'-' {
+        let as_bytes: Vec<char> = uuid.chars().collect();
+        if as_bytes[str_index] == '-' {
             str_index += 1;
             continue;
         }
 
-        let oct = as_bytes[str_index] + as_bytes[str_index + 1];
+        let oct = 
+            u8::from_str_radix(as_bytes[str_index].to_string().as_str(), 16).unwrap() * 0x10
+            + u8::from_str_radix(as_bytes[str_index + 1].to_string().as_str(), 16).unwrap();
         buf[buf_index] = oct;
 
         buf_index += 1;
