@@ -18,7 +18,7 @@ keywords = [
 
 [features]
 default=[]
-namespaces=[]
+namespaces=["default"]
 
 [dependencies]
 md-5 = "0.10.6"
