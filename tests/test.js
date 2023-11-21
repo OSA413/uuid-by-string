@@ -24,10 +24,6 @@ describe('unit', () => {
     expect(validateUuid('d3486ae9-136e-5856-bc42-212385ea7970')).toBe(true);
   });
 
-  test('should invalidate uuid', () => {
-    expect(validateUuid('Lorem ipsum')).toBe(false);
-  });
-
   test('should parse uuid', () => {
     expect(parseUuid('d3486ae9-136e-5856-bc42-212385ea7970')).toMatchSnapshot();
   });

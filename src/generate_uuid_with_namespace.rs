@@ -8,8 +8,8 @@ pub fn generate_uuid_with_namespace(target: &str, namespace: &str, version: u8) 
     let namespace_char_buffer = for_namespace::parse_uuid(namespace);
 
     match namespace_char_buffer {
-        Ok(_) => (),
         Err(x) => return Err(x),
+        _ => (),
     }
 
     let namespace_char_buffer = namespace_char_buffer.unwrap();

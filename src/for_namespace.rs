@@ -5,7 +5,7 @@ const HEX_DIGITS: &[char; 16] = &['0','1','2','3','4','5','6','7','8','9','a','b
 /** Length of string containing uuid */
 const UUID_LENGTH: usize = 36;
 /** Regular expression for uuid testing */
-const UUID_REGEXP: &str = r"/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i";
+const UUID_REGEXP: &str = r"(?i)^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$";
 
 fn is_valid_uuid(uuid: &str) -> bool {
     let regex = Regex::new(UUID_REGEXP).unwrap();
