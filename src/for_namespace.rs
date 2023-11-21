@@ -1,7 +1,5 @@
 use regex::Regex;
 
-/** List of hex digit for fast accessing by index */
-const HEX_DIGITS: &[char; 16] = &['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
 /** Length of string containing uuid */
 const UUID_LENGTH: usize = 36;
 /** Regular expression for uuid testing */
