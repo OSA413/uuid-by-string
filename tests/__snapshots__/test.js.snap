@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`integration should generate uuid v3 from string 1`] = `"d41d8cd9-8f00-3204-a980-0998ecf8427e"`;
-
-exports[`integration should generate uuid v3 from string 2`] = `"86fb269d-190d-3c85-b6e0-468ceca42a20"`;
-
-exports[`integration should generate uuid v3 from string 3`] = `"0956d2fb-d5d5-3298-84a4-d21ed2f76e0c"`;
-
-exports[`integration should generate uuid v3 from string 4`] = `"20b085c2-2e91-324f-89c2-648fc03ee626"`;
-
-exports[`integration should generate uuid v3 from string 5`] = `"34e58612-20fa-3978-bbe1-656b34ab2f2f"`;
-
 exports[`integration should generate uuid v3 from string with namespace 1`] = `"6d72c664-05f7-5ae7-8653-ee9ebed25b00"`;
 
 exports[`integration should generate uuid v3 from string with namespace 2`] = `"6c85afc9-ff2a-56d9-b451-75a825751bed"`;
@@ -19,16 +9,6 @@ exports[`integration should generate uuid v3 from string with namespace 3`] = `"
 exports[`integration should generate uuid v3 from string with namespace 4`] = `"a7928b1a-03e8-5a2e-adf9-dee22ea1d1d5"`;
 
 exports[`integration should generate uuid v3 from string with namespace 5`] = `"5daf5b6d-b5e8-5e22-96c4-71e0fd8c4540"`;
-
-exports[`integration should generate uuid v5 from string 1`] = `"da39a3ee-5e6b-5b0d-b255-bfef95601890"`;
-
-exports[`integration should generate uuid v5 from string 2`] = `"d3486ae9-136e-5856-bc42-212385ea7970"`;
-
-exports[`integration should generate uuid v5 from string 3`] = `"94912be8-b3fb-57d4-961e-a50e5948c629"`;
-
-exports[`integration should generate uuid v5 from string 4`] = `"ae49974d-2750-5eb2-b004-24bf83a04950"`;
-
-exports[`integration should generate uuid v5 from string 5`] = `"c81386c7-744f-5af9-8899-cfdd14664aa7"`;
 
 exports[`integration should generate uuid v5 from string with namespace 1`] = `"6d72c664-05f7-5ae7-8653-ee9ebed25b00"`;
 
