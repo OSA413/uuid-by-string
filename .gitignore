@@ -1,11 +1,5 @@
 # dirs
-node_modules/
-coverage/
 .vscode/
-
-# files
-package-lock.json
-
 
 # Added by cargo
 
