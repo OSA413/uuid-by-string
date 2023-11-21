@@ -4,6 +4,8 @@ uuid-by-string
 =======================
 Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-Based UUID. Supports 3 and 5 versions of UUID.
 
+This library is rewritten from [Danakt Saushkin's JavaScript library of the same name](https://github.com/danakt/uuid-by-string). All features and tests are in place.
+
 ## Installation
 
 ```bash
