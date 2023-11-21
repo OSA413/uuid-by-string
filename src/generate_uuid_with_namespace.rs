@@ -3,6 +3,10 @@ mod common;
 #[path="./for_namespace.rs"]
 mod for_namespace;
 
+pub fn generate_uuid_with_namespace(target: &str, namespace: &str) -> Result<String, &'static str> {
+    generate_uuid_with_namespace_v5(target, namespace)
+}
+
 pub fn generate_uuid_with_namespace_v3(target: &str, namespace: &str) -> Result<String, &'static str> {
     let target_char_buffer = target.as_bytes();
     let namespace_char_buffer = for_namespace::parse_uuid(namespace);
