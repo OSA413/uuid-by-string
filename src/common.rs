@@ -2,7 +2,9 @@ use sha1::{Sha1, Digest};
 use md5::Md5;
 
 fn uint8_to_hex(ubyte: u8) -> String {
-    return format!("{:x?}", ubyte)
+    return if ubyte < 16
+        { format!("0{:x?}", ubyte) }
+        else {format!("{:x?}", ubyte)}
 }
 
 fn uint8_array_to_hex(buf: &[u8]) -> String {
