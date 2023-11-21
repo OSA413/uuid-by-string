@@ -19,7 +19,7 @@ generate_uuid("hello world")
 
 // For namespace generation enable feature "namespaces"
 use uuid_by_string::generate_uuid_with_namespace::{generate_uuid_with_namespace};
-generate_uuid_with_namespace("hello world", "d3486ae9-136e-5856-bc42-212385ea7970")
+generate_uuid_with_namespace("hello world", "d3486ae9-136e-5856-bc42-212385ea7970").unwrap()
 //"1825ed38-348f-5b46-99de-fd84b83aba5e"
 ```
 
