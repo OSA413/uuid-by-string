@@ -6,6 +6,8 @@ Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-B
 
 **Note**: generating UUID v3 and v5 without a namespace is **non-standard** (the RFC-4122 covers only the case when you concatenate the namespace with the name, so if you want a reproducable result in other progrmming langiages you need to generate UUID with some namespace, e.g. [nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Special_UUIDs))
 
+According to the implementation differences, it's impossible to replicate results of the no-namespace UUID generation with a standard generation, so keep that in mind.
+
 This library is rewritten from [Danakt Saushkin's JavaScript library of the same name](https://github.com/danakt/uuid-by-string). All features and tests are in place.
 
 ## Installation
