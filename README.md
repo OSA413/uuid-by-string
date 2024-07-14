@@ -2,7 +2,9 @@ uuid-by-string
 [![NPM](https://img.shields.io/crates/v/uuid-by-string)](https://crates.io/crates/uuid-by-string)
 [![Downloads](https://img.shields.io/crates/dr/uuid-by-string)](https://crates.io/crates/uuid-by-string)
 =======================
-Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-Based UUID. Supports 3 and 5 versions of UUID.
+Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-Based UUID. Supports 3 and 5 versions of UUID. 
+
+**Note**: generating UUID v3 and v5 without a namespace is **non-standard** (the RFC-4122 covers only the case when you concatenate the namespace with the name, so if you want a reproducable result in other progrmming langiages you need to generate UUID with some namespace, e.g. [nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Special_UUIDs))
 
 This library is rewritten from [Danakt Saushkin's JavaScript library of the same name](https://github.com/danakt/uuid-by-string). All features and tests are in place.
 
@@ -16,6 +18,7 @@ cargo add uuid-by-string
 
 ```rust
 use uuid_by_string::generate_uuid::{generate_uuid};
+// Note: generating UUID v3 and v5 without namespace is non-standard
 generate_uuid("hello world")
 //"2aae6c35-c94f-5fb4-95db-e95f408b9ce9";
 
@@ -37,6 +40,7 @@ use uuid_by_string::generate_uuid::{generate_uuid_v3, generate_uuid_v5};
 use uuid_by_string::generate_uuid_with_namespace::{generate_uuid_with_namespace_v3, generate_uuid_with_namespace_v5};
 
 fn main() {
+    // Note: generating UUID v3 and v5 without namespace is non-standard
     assert_eq!(generate_uuid_v3("hello world"), "5eb63bbb-e01e-3ed0-93cb-22bb8f5acdc3");
     assert_eq!(generate_uuid_v5("hello world"), "2aae6c35-c94f-5fb4-95db-e95f408b9ce9");
 
