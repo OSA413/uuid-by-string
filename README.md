@@ -2,7 +2,7 @@ uuid-by-string
 [![NPM](https://img.shields.io/crates/v/uuid-by-string)](https://crates.io/crates/uuid-by-string)
 [![Downloads](https://img.shields.io/crates/dr/uuid-by-string)](https://crates.io/crates/uuid-by-string)
 =======================
-Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-Based UUID. Supports 3 and 5 versions of UUID. 
+Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-Based UUID. Supports 3 and 5 versions of UUID with and without a namespace.
 
 **Note**: generating UUID v3 and v5 without a namespace is **non-standard** (the RFC-4122 covers only the case when you concatenate the namespace with the name, so if you want a reproducable result in other progrmming langiages you need to generate UUID with some namespace, e.g. [nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Special_UUIDs))
 
