@@ -53,3 +53,24 @@ fn main() {
     assert_eq!(generate_uuid_with_namespace_v5("hello world", "D3486AE9-136e-5856-bc42-212385ea7970"), Ok("1825ed38-348f-5b46-99de-fd84b83aba5e".to_owned()));
 }
 ```
+
+## Replacement
+
+You can (and should) replace this library with https://docs.rs/uuid/. The code whould look like this:
+
+```rust
+let uuid = Uuid::new_v3(&Uuid::nil(), b"Hello world!");
+let uuid = Uuid::new_v5(&Uuid::nil(), b"Hello world!");
+```
+
+Since generating a UUID v3 and v5 without namespace is non-standard you either have to stick with this library or rely on your own implementation of the following methods of this library:
+```
+generate_uuid
+generate_uuid_v3
+generate_uuid_v5
+```
+
+More info about replacement:
+* https://docs.rs/uuid/
+* https://docs.rs/uuid/latest/uuid/struct.Uuid.html#method.new_v3
+* https://docs.rs/uuid/latest/uuid/struct.Uuid.html#method.new_v5
