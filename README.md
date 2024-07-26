@@ -1,8 +1,10 @@
 uuid-by-string
-[![NPM](https://img.shields.io/crates/v/uuid-by-string)](https://crates.io/crates/uuid-by-string)
+[![Crates.io](https://img.shields.io/crates/v/uuid-by-string)](https://crates.io/crates/uuid-by-string)
 [![Downloads](https://img.shields.io/crates/dr/uuid-by-string)](https://crates.io/crates/uuid-by-string)
 =======================
-Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-Based UUID. Supports 3 and 5 versions of UUID with and without a namespace.
+Generates the [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3) Name-Based UUID. Supports 3 and 5 versions of UUID with and without (non-standard, see below) a namespace.
+
+## 🚨 Warning: Don't use unless explicitly necessary (see [replacement](#replacement)) 🚨
 
 **Note**: generating UUID v3 and v5 without a namespace is **non-standard** (the RFC-4122 covers only the case when you concatenate the namespace with the name, so if you want a reproducable result in other progrmming langiages you need to generate UUID with some namespace, e.g. [nil](https://en.wikipedia.org/wiki/Universally_unique_identifier#Special_UUIDs))
 
@@ -34,7 +36,6 @@ The string `hello world` will always return `2aae6c35-c94f-5fb4-95db-e95f408b9ce
 
 You can specify the UUID version. Available versions is 3 and 5 according to [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3). The version is responsible for the hashing algorithm: version 3 uses MD5, and version 5 uses SHA-1. UUIDv5 is used by default if version is not specified.
 
-
 ```rust
 use uuid_by_string::generate_uuid::{generate_uuid_v3, generate_uuid_v5};
 
@@ -61,13 +62,6 @@ You can (and should) replace this library with https://docs.rs/uuid/. The code w
 ```rust
 let uuid = Uuid::new_v3(&Uuid::nil(), b"Hello world!");
 let uuid = Uuid::new_v5(&Uuid::nil(), b"Hello world!");
-```
-
-Since generating a UUID v3 and v5 without namespace is non-standard you either have to stick with this library or rely on your own implementation of the following methods of this library:
-```
-generate_uuid
-generate_uuid_v3
-generate_uuid_v5
 ```
 
 More info about replacement:

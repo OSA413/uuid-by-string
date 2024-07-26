@@ -3,13 +3,15 @@ mod common;
 #[path="./for_namespace.rs"]
 mod for_namespace;
 
-pub fn generate_uuid_with_namespace(target: &str, namespace: &str) -> Result<String, &'static str> {
-    generate_uuid_with_namespace_v5(target, namespace)
+const NIL_UUID: &str = "00000000-0000-0000-0000-000000000000";
+
+pub fn generate(target: &str, namespace: Option<&str>) -> Result<String, &'static str> {
+    generate_v5(target, namespace)
 }
 
-pub fn generate_uuid_with_namespace_v3(target: &str, namespace: &str) -> Result<String, &'static str> {
+pub fn generate_v3(target: &str, namespace: Option<&str>) -> Result<String, &'static str> {
     let target_char_buffer = target.as_bytes();
-    let namespace_char_buffer = for_namespace::parse_uuid(namespace);
+    let namespace_char_buffer = for_namespace::parse_uuid(namespace.unwrap_or(NIL_UUID));
 
     match namespace_char_buffer {
         Err(x) => return Err(x),
@@ -22,9 +24,9 @@ pub fn generate_uuid_with_namespace_v3(target: &str, namespace: &str) -> Result<
     return Ok(common::hash_to_uuid(result, 3));
 }
 
-pub fn generate_uuid_with_namespace_v5(target: &str, namespace: &str) -> Result<String, &'static str> {
+pub fn generate_v5(target: &str, namespace: Option<&str>) -> Result<String, &'static str> {
     let target_char_buffer = target.as_bytes();
-    let namespace_char_buffer = for_namespace::parse_uuid(namespace);
+    let namespace_char_buffer = for_namespace::parse_uuid(namespace.unwrap_or(NIL_UUID));
 
     match namespace_char_buffer {
         Err(x) => return Err(x),

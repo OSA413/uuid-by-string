@@ -1,7 +1,7 @@
 [package]
 name = "uuid-by-string"
 description = "Generating uuid-hash from string"
-version = "2.0.5"
+version = "3.0.0"
 edition = "2021"
 authors = ["Oleg \"OSA413\" Sokolov", "Danakt Saushkin"]
 repository = "https://github.com/OSA413/uuid-by-string"
@@ -16,19 +16,7 @@ keywords = [
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[features]
-default=[]
-namespaces=["default"]
-
 [dependencies]
 md-5 = "0.10.6"
 regex = "1.10.2"
 sha1 = "0.10.6"
-
-[[test]]
-name = "default"
-required-features = []
-
-[[test]]
-name = "namespaces"
-required-features = ["namespaces"]
