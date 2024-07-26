@@ -60,6 +60,8 @@ fn main() {
 You can (and should) replace this library with https://docs.rs/uuid/. The code whould look like this:
 
 ```rust
+use uuid::Uuid;
+
 let uuid = Uuid::new_v3(&Uuid::nil(), b"Hello world!");
 let uuid = Uuid::new_v5(&Uuid::nil(), b"Hello world!");
 ```
