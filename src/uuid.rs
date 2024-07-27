@@ -9,7 +9,7 @@ pub fn generate(target: &str, namespace: Option<&str>) -> Result<String, &'stati
     generate_v5(target, namespace)
 }
 
-pub fn generate_v3(target: &str, namespace: Option<&str>) -> Result<String, &'static str> {
+fn generate_common(target: &str, namespace: Option<&str>, f: &dyn Fn(Vec<u8>) -> [u8; 16], version: u8) -> Result<String, &'static str> {
     let target_char_buffer = target.as_bytes();
     let namespace_char_buffer = for_namespace::parse_uuid(namespace.unwrap_or(NIL_UUID));
 
@@ -20,21 +20,14 @@ pub fn generate_v3(target: &str, namespace: Option<&str>) -> Result<String, &'st
 
     let namespace_char_buffer = namespace_char_buffer.unwrap();
     let buffer = [&namespace_char_buffer, target_char_buffer].concat();
-    let result = common::md5_hash(buffer);
-    return Ok(common::hash_to_uuid(result, 3));
+    let result = f(buffer);
+    return Ok(common::hash_to_uuid(result, version));
+}
+
+pub fn generate_v3(target: &str, namespace: Option<&str>) -> Result<String, &'static str> {
+    generate_common(target, namespace, &common::md5_hash, 3)
 }
 
 pub fn generate_v5(target: &str, namespace: Option<&str>) -> Result<String, &'static str> {
-    let target_char_buffer = target.as_bytes();
-    let namespace_char_buffer = for_namespace::parse_uuid(namespace.unwrap_or(NIL_UUID));
-
-    match namespace_char_buffer {
-        Err(x) => return Err(x),
-        _ => (),
-    }
-
-    let namespace_char_buffer = namespace_char_buffer.unwrap();
-    let buffer = [&namespace_char_buffer, target_char_buffer].concat();
-    let result = common::sha1_hash(buffer);
-    return Ok(common::hash_to_uuid(result, 5));
+    generate_common(target, namespace, &common::sha1_hash, 5)
 }
