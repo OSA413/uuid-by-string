@@ -21,15 +21,18 @@ cargo add uuid-by-string
 ## Usage
 
 ```rust
-use uuid_by_string::generate_uuid::{generate_uuid};
-// Note: generating UUID v3 and v5 without namespace is non-standard
-generate_uuid("hello world")
-//"2aae6c35-c94f-5fb4-95db-e95f408b9ce9";
-
-// For namespace generation enable feature "namespaces"
-use uuid_by_string::generate_uuid_with_namespace::{generate_uuid_with_namespace};
-generate_uuid_with_namespace("hello world", "d3486ae9-136e-5856-bc42-212385ea7970").unwrap()
+use uuid_by_string::uuid;
+uuid::generate("hello world", Some("d3486ae9-136e-5856-bc42-212385ea7970")).unwrap()
 //"1825ed38-348f-5b46-99de-fd84b83aba5e"
+
+// You can skip UUID and the nil UUID will be used as default
+uuid::generate("hello world", None).unwrap()
+//"191333f6-c83e-5b3b-bdb0-bd483ad1bcb7"
+
+use uuid_by_string::uuid_no_namespace;
+// Note: generating UUID v3 and v5 without namespace is non-standard
+uuid_no_namespace::generate("hello world")
+//"2aae6c35-c94f-5fb4-95db-e95f408b9ce9";
 ```
 
 The string `hello world` will always return `2aae6c35-c94f-5fb4-95db-e95f408b9ce9`.
@@ -37,21 +40,18 @@ The string `hello world` will always return `2aae6c35-c94f-5fb4-95db-e95f408b9ce
 You can specify the UUID version. Available versions is 3 and 5 according to [RFC-4122](https://tools.ietf.org/html/rfc4122#section-4.3). The version is responsible for the hashing algorithm: version 3 uses MD5, and version 5 uses SHA-1. UUIDv5 is used by default if version is not specified.
 
 ```rust
-use uuid_by_string::generate_uuid::{generate_uuid_v3, generate_uuid_v5};
-
-// For namespace generation enable feature "namespaces"
-use uuid_by_string::generate_uuid_with_namespace::{generate_uuid_with_namespace_v3, generate_uuid_with_namespace_v5};
+use uuid_by_string::uuid;
+use uuid_by_string::uuid_no_namespace;
 
 fn main() {
-    // Note: generating UUID v3 and v5 without namespace is non-standard
-    assert_eq!(generate_uuid_v3("hello world"), "5eb63bbb-e01e-3ed0-93cb-22bb8f5acdc3");
-    assert_eq!(generate_uuid_v5("hello world"), "2aae6c35-c94f-5fb4-95db-e95f408b9ce9");
+    assert_eq!(uuid::generate_v3("hello world", Some("d3486ae9-136e-5856-bc42-212385ea7970")), Ok("c8aeb76a-1204-3f07-995e-5c5fa3494b7f".to_owned()));
+    assert_eq!(uuid::generate_v3("hello world", Some("D3486AE9-136e-5856-bc42-212385ea7970")), Ok("c8aeb76a-1204-3f07-995e-5c5fa3494b7f".to_owned()));
+    assert_eq!(uuid::generate_v5("hello world", Some("d3486ae9-136e-5856-bc42-212385ea7970")), Ok("1825ed38-348f-5b46-99de-fd84b83aba5e".to_owned()));
+    assert_eq!(uuid::generate_v5("hello world", Some("D3486AE9-136e-5856-bc42-212385ea7970")), Ok("1825ed38-348f-5b46-99de-fd84b83aba5e".to_owned()));
 
-    // For namespace generation enable feature "namespaces"
-    assert_eq!(generate_uuid_with_namespace_v3("hello world", "d3486ae9-136e-5856-bc42-212385ea7970"), Ok("c8aeb76a-1204-3f07-995e-5c5fa3494b7f".to_owned()));
-    assert_eq!(generate_uuid_with_namespace_v3("hello world", "D3486AE9-136e-5856-bc42-212385ea7970"), Ok("c8aeb76a-1204-3f07-995e-5c5fa3494b7f".to_owned()));
-    assert_eq!(generate_uuid_with_namespace_v5("hello world", "d3486ae9-136e-5856-bc42-212385ea7970"), Ok("1825ed38-348f-5b46-99de-fd84b83aba5e".to_owned()));
-    assert_eq!(generate_uuid_with_namespace_v5("hello world", "D3486AE9-136e-5856-bc42-212385ea7970"), Ok("1825ed38-348f-5b46-99de-fd84b83aba5e".to_owned()));
+    // Note: generating UUID v3 and v5 without namespace is non-standard
+    assert_eq!(uuid_no_namespace::generate_v3("hello world"), "5eb63bbb-e01e-3ed0-93cb-22bb8f5acdc3");
+    assert_eq!(uuid_no_namespace::generate_v5("hello world"), "2aae6c35-c94f-5fb4-95db-e95f408b9ce9");
 }
 ```
 
